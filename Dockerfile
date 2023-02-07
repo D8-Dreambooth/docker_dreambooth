@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=digitalhigh/dreambooth_base
+ARG BASE_IMAGE=digitalhigh/dreambooth_venv
 FROM ${BASE_IMAGE} as cuda-base
 
 WORKDIR /
@@ -22,12 +22,11 @@ RUN pip install -r /workspace/stable-diffusion-webui/requirements_versions.txt
 RUN pip install -r /workspace/stable-diffusion-webui/extensions/sd_dreambooth_extension/requirements.txt
 
 WORKDIR /workspace/stable-diffusion-webui
-RUN git pull
 WORKDIR /workspace/stable-diffusion-webui/extensions
 RUN git clone -b Torch2 https://github.com/d8ahazard/sd_dreambooth_extension.git
-WORKDIR /workspace/stable-diffusion-webui/extensions/sd_dreambooth_extension
-RUN git pull
-WORKDIR /workspace/stable-diffusion-webui
+RUN git clone https://github.com/yfszzx/stable-diffusion-webui-images-browser.git
+
+WORKDIR /workspace/stable-diffusion-webui/
 
 # Install Requirements
 RUN pip install -r /workspace/stable-diffusion-webui/requirements_versions.txt
@@ -43,9 +42,6 @@ RUN git clone https://github.com/sczhou/CodeFormer.git ./repositories/CodeFormer
 RUN git clone https://github.com/salesforce/BLIP.git ./repositories/BLIP
 RUN git clone https://github.com/crowsonkb/k-diffusion.git ./repositories/k-diffusion
 RUN git clone https://github.com/Stability-AI/stablediffusion.git ./repositories/stable-diffusion-stability-ai
-
-WORKDIR /workspace/stable-diffusion-webui/extensions
-RUN git clone https://github.com/yfszzx/stable-diffusion-webui-images-browser.git
 
 COPY /workspace/models/ /workspace/stable-diffusion-webui/models/Stable-diffusion/
 
