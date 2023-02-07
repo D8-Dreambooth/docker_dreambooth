@@ -1,5 +1,5 @@
-ARG BASE_IMAGE=digitalhigh/dreambooth_venv
-FROM ${BASE_IMAGE} as cuda-base
+ARG BASE_IMAGE=digitalhigh/dreambooth_venv:latest
+FROM ${BASE_IMAGE} as cuda-venv
 
 WORKDIR /
 
