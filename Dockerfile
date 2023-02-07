@@ -38,9 +38,6 @@ RUN if [ ! -d "/workspace/venv" ]; then \
     ; fi
 	
 
-# Install Requirements
-RUN pip install -r /workspace/stable-diffusion-webui/requirements_versions.txt
-RUN pip install -r /workspace/stable-diffusion-webui/extensions/sd_dreambooth_extension/requirements.txt
 
 WORKDIR /workspace/stable-diffusion-webui
 WORKDIR /workspace/stable-diffusion-webui/extensions
