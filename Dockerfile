@@ -9,12 +9,27 @@ ENV DEBIAN_FRONTEND noninteractive\
 
 WORKDIR /workspace
 
-COPY --from=digitalhigh/dreambooth_venv:latest /workspace/venv/ /workspace/venv/
 COPY --from=digitalhigh/dreambooth_venv:latest /workspace/models/ /workspace/models/
 
 RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 
 WORKDIR /workspace/
+
+# Create venv
+ENV VIRTUAL_ENV=/workspace/venv
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# Install dependencies:
+RUN pip install git+https://github.com/TencentARC/GFPGAN.git
+RUN pip install git+https://github.com/openai/CLIP.git
+RUN pip install git+https://github.com/mlfoundations/open_clip.git
+
+RUN pip install https://github.com/ArrowM/xformers/releases/download/xformers-0.0.17-cu118-linux/xformers-0.0.17+7f4fdce.d20230204-cp310-cp310-linux_x86_64.whl
+RUN pip install https://download.pytorch.org/whl/nightly/cu118/torch-2.0.0.dev20230202%2Bcu118-cp310-cp310-linux_x86_64.whl https://download.pytorch.org/whl/nightly/cu118/torchvision-0.15.0.dev20230202%2Bcu118-cp310-cp310-linux_x86_64.whl https://download.pytorch.org/whl/nightly/pytorch_triton-2.0.0%2B0d7e753227-cp310-cp310-linux_x86_64.whl
+
+RUN jupyter nbextension enable --py widgetsnbextension
+
 
 RUN if [ ! -d "/workspace/venv" ]; then \
     echo "Directory '/workspace/venv' does not exist" \
@@ -22,9 +37,6 @@ RUN if [ ! -d "/workspace/venv" ]; then \
     echo "Directory '/workspace/venv' exists" \
     ; fi
 	
-# Really load venv
-ENV VIRTUAL_ENV=/workspace/venv
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 # Install Requirements
 RUN pip install -r /workspace/stable-diffusion-webui/requirements_versions.txt
