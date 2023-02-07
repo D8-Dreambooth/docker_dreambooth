@@ -1,14 +1,14 @@
-ARG BASE_IMAGE=digitalhigh/dreambooth_venv:latest
-FROM ${BASE_IMAGE} as cuda-venv
+ARG BASE_IMAGE=digitalhigh/dreambooth_base:latest
+COPY --from=digitalhigh/dreambooth_venv:latest /workspace/venv/ /workspace/venv/
+COPY --from=digitalhigh/dreambooth_venv:latest /workspace/models/ /workspace/models/
+
+FROM ${BASE_IMAGE} as cuda-base
 
 WORKDIR /
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND noninteractive\
     SHELL=/bin/bash
-
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* && \
-    echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 
 WORKDIR /workspace
 RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
