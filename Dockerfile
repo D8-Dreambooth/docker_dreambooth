@@ -1,7 +1,4 @@
 ARG BASE_IMAGE=digitalhigh/dreambooth_base:latest
-COPY --from=digitalhigh/dreambooth_venv:latest /workspace/venv/ /workspace/venv/
-COPY --from=digitalhigh/dreambooth_venv:latest /workspace/models/ /workspace/models/
-
 FROM ${BASE_IMAGE} as cuda-base
 
 WORKDIR /
@@ -11,6 +8,10 @@ ENV DEBIAN_FRONTEND noninteractive\
     SHELL=/bin/bash
 
 WORKDIR /workspace
+
+COPY --from=digitalhigh/dreambooth_venv:latest /workspace/venv/ /workspace/venv/
+COPY --from=digitalhigh/dreambooth_venv:latest /workspace/models/ /workspace/models/
+
 RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 
 WORKDIR /workspace/
