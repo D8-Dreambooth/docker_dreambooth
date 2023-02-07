@@ -43,8 +43,6 @@ RUN git clone https://github.com/salesforce/BLIP.git ./repositories/BLIP
 RUN git clone https://github.com/crowsonkb/k-diffusion.git ./repositories/k-diffusion
 RUN git clone https://github.com/Stability-AI/stablediffusion.git ./repositories/stable-diffusion-stability-ai
 
-COPY --from=cuda-venv /workspace/models/ /workspace/stable-diffusion-webui/models/Stable-diffusion/
-
 RUN rm -rf /workspace/models/
 
 SHELL ["/bin/bash", "-c"]
