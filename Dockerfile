@@ -7,12 +7,20 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 ENV DEBIAN_FRONTEND noninteractive\
     SHELL=/bin/bash
 
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* && \
+    echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
 
 WORKDIR /workspace
 RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 
 WORKDIR /workspace/
 
+RUN if [ ! -d "/workspace/venv" ]; then \
+    echo "Directory '/workspace/venv' does not exist" \
+    ; else \
+    echo "Directory '/workspace/venv' exists" \
+    ; fi
+	
 # Really load venv
 ENV VIRTUAL_ENV=/workspace/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
