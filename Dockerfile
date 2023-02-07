@@ -9,7 +9,6 @@ ENV DEBIAN_FRONTEND noninteractive\
 
 WORKDIR /workspace
 
-COPY --from=digitalhigh/dreambooth_venv:latest /workspace/models/ /workspace/models/
 
 RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
 
@@ -46,14 +45,6 @@ RUN git clone https://github.com/yfszzx/stable-diffusion-webui-images-browser.gi
 
 WORKDIR /workspace/stable-diffusion-webui/
 
-# Install Requirements
-RUN pip install -r /workspace/stable-diffusion-webui/requirements_versions.txt
-RUN pip install -r /workspace/stable-diffusion-webui/extensions/sd_dreambooth_extension/requirements.txt
-RUN pip install https://github.com/ArrowM/xformers/releases/download/xformers-0.0.17-cu118-linux/xformers-0.0.17+7f4fdce.d20230204-cp310-cp310-linux_x86_64.whl
-RUN pip install https://download.pytorch.org/whl/nightly/cu118/torch-2.0.0.dev20230202%2Bcu118-cp310-cp310-linux_x86_64.whl https://download.pytorch.org/whl/nightly/cu118/torchvision-0.15.0.dev20230202%2Bcu118-cp310-cp310-linux_x86_64.whl https://download.pytorch.org/whl/nightly/pytorch_triton-2.0.0%2B0d7e753227-cp310-cp310-linux_x86_64.whl
-
-WORKDIR /workspace/stable-diffusion-webui
-
 RUN git clone https://github.com/CompVis/stable-diffusion.git ./repositories/stable-diffusion
 RUN git clone https://github.com/CompVis/taming-transformers.git ./repositories/taming-transformers
 RUN git clone https://github.com/sczhou/CodeFormer.git ./repositories/CodeFormer
@@ -61,7 +52,7 @@ RUN git clone https://github.com/salesforce/BLIP.git ./repositories/BLIP
 RUN git clone https://github.com/crowsonkb/k-diffusion.git ./repositories/k-diffusion
 RUN git clone https://github.com/Stability-AI/stablediffusion.git ./repositories/stable-diffusion-stability-ai
 
-RUN rm -rf /workspace/models/
+COPY --from=digitalhigh/dreambooth_venv:latest /workspace/models/ /workspace/models/
 
 SHELL ["/bin/bash", "-c"]
 
