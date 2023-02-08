@@ -24,8 +24,6 @@ RUN pip install git+https://github.com/TencentARC/GFPGAN.git
 RUN pip install git+https://github.com/openai/CLIP.git
 RUN pip install git+https://github.com/mlfoundations/open_clip.git
 
-RUN pip install https://github.com/ArrowM/xformers/releases/download/xformers-0.0.17-cu118-linux/xformers-0.0.17+7f4fdce.d20230204-cp310-cp310-linux_x86_64.whl
-RUN pip install https://download.pytorch.org/whl/nightly/cu118/torch-2.0.0.dev20230202%2Bcu118-cp310-cp310-linux_x86_64.whl https://download.pytorch.org/whl/nightly/cu118/torchvision-0.15.0.dev20230202%2Bcu118-cp310-cp310-linux_x86_64.whl https://download.pytorch.org/whl/nightly/pytorch_triton-2.0.0%2B0d7e753227-cp310-cp310-linux_x86_64.whl
 
 RUN jupyter nbextension enable --py widgetsnbextension
 
