@@ -1,11 +1,15 @@
 #!/bin/bash
-echo "Container Started"
+echo "Dreambooth Container Started"
 export PYTHONUNBUFFERED=1
 source /workspace/venv/bin/activate
 cd /workspace/stable-diffusion-webui
 
-pip install -r /workspace/stable-diffusion-webui/requirements_versions.txt
-pip install -r /workspace/stable-diffusion-webui/extensions/sd_dreambooth_extension/requirements.txt
+if [[ ! -f /workspace/.first_run ]]
+then
+  pip install -r /workspace/stable-diffusion-webui/requirements_versions.txt
+  pip install -r /workspace/stable-diffusion-webui/extensions/sd_dreambooth_extension/requirements.txt
+  touch /workspace/.first_run
+fi
 
 if [[ $UPDATE_EXTENSION ]]
 then
