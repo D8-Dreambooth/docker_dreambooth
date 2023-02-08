@@ -44,27 +44,20 @@ RUN git clone https://github.com/yfszzx/stable-diffusion-webui-images-browser.gi
 WORKDIR /workspace/stable-diffusion-webui/
 
 RUN git clone https://github.com/CompVis/stable-diffusion.git ./repositories/stable-diffusion
-WORKDIR /workspace/stable-diffusion-webui/repositories/stable-diffusion
-RUN git checkout "47b6b607fdd31875c9279cd2f4f16b92e4ea958e"
-WORKDIR /workspace/stable-diffusion-webui/
+RUN git -C /workspace/stable-diffusion-webui/repositories/stable-diffusion checkout "47b6b607fdd31875c9279cd2f4f16b92e4ea958e"
 
 RUN git clone https://github.com/CompVis/taming-transformers.git ./repositories/taming-transformers
-WORKDIR /workspace/stable-diffusion-webui/repositories/taming-transformers
-RUN GIT CHECKOUT "24268930bf1dce879235a7fddd0b2355b84d7ea6"
-WORKDIR /workspace/stable-diffusion-webui/
+RUN git -C /workspace/stable-diffusion-webui/repositories/taming-transformers checkout "24268930bf1dce879235a7fddd0b2355b84d7ea6"
 
 RUN git clone https://github.com/sczhou/CodeFormer.git ./repositories/CodeFormer
-RUN cd ./repositories/CodeFormer && git checkout "c5b4593074ba6214284d6acd5f1719b6c5d739af"
-WORKDIR /workspace/stable-diffusion-webui/
+RUN git -C /workspace/stable-diffusion-webui/repositories/CodeFormer checkout "c5b4593074ba6214284d6acd5f1719b6c5d739af"
 
 RUN git clone https://github.com/salesforce/BLIP.git ./repositories/BLIP
-WORKDIR /workspace/stable-diffusion-webui/repositories/BLIP
-RUN git checkout "48211a1594f1321b00f14c9f7a5b4813144b2fb9"
-WORKDIR /workspace/stable-diffusion-webui/
+RUN git -C /workspace/stable-diffusion-webui/repositories/BLIP checkout "48211a1594f1321b00f14c9f7a5b4813144b2fb9"
 
 RUN git clone https://github.com/crowsonkb/k-diffusion.git ./repositories/k-diffusion
-WORKDIR /workspace/stable-diffusion-webui/repositories/k-diffusion
-RUN git checkout "5b3af030dd83e0297272d861c19477735d0317ec"
+RUN git -C /workspace/stable-diffusion-webui/repositories/k-diffusion checkout "5b3af030dd83e0297272d861c19477735d0317ec"
+
 WORKDIR /workspace/stable-diffusion-webui/
 
 
