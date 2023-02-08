@@ -11,14 +11,14 @@ then
   touch /workspace/.first_run
 fi
 
-if [[ $UPDATE_EXTENSION ]]
+if [[ "$UPDATE_EXTENSION" == "true" ]]
 then
 	cd /workspace/stable-diffusion-webui/extensions/sd_dreambooth_extension/
 	git fetch && git pull
 	cd /workspace/stable-diffusion-webui	
 fi
 
-if [[ $UPDATE_WEBUI ]]
+if [[ "$UPDATE_WEBUI" == "true" ]]
 then
 	cd /workspace/stable-diffusion-webui/extensions/sd_dreambooth_extension/
 	git fetch && git pull
@@ -26,7 +26,7 @@ fi
 
 cd /workspace/stable-diffusion-webui
 
-if [[ $TORCH2 ]]
+if [[ "$TORCH2" == "true" ]]
 then
 	# Get the current date in the format YYYYMMDD
 	current_date=$(date +%Y%m%d)
@@ -55,7 +55,7 @@ fi
 
 python relauncher.py &
 
-if [[ $PUBLIC_KEY ]]
+if [[ -n $PUBLIC_KEY ]]
 then
     mkdir -p ~/.ssh
     chmod 700 ~/.ssh
@@ -67,7 +67,7 @@ then
     echo "SSH Service Started"
 fi
 
-if [[ $JUPYTER_PASSWORD ]]
+if [[ -n $JUPYTER_PASSWORD ]]
 then
     ln -sf /examples /workspace
     ln -sf /root/welcome.ipynb /workspace

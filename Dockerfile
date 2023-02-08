@@ -63,4 +63,26 @@ ADD ui-config.json /workspace/stable-diffusion-webui/ui-config.json
 ADD relauncher.py .
 ADD start.sh /start.sh
 RUN chmod a+x /start.sh
+
+EXPOSE 22/tcp
+EXPOSE 22/udp
+EXPOSE 3000/tcp
+
+# Set to have the container update the dreambooth extension on container start.
+ENV UPDATE_EXTENSION="false"
+
+# Update the Auto1111 WebUI on container start.
+ENV UPDATE_WEBUI="false"
+
+# Set to install torch2. Otherwise, torch 1.1.13 will be used.
+ENV TORCH2="false"
+
+# Set for openSSH access. Runpod automatically sets this if configured in user settings.
+ENV PUBLIC_KEY=""
+
+ENV JUPYTER_PASSWORD=""
+
+ENV API_KEY=""
+
+ENV TORCH_REVISION=""
 SHELL ["/bin/bash", "--login", "-c"]
