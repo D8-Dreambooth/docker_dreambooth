@@ -34,11 +34,6 @@ RUN if [ ! -d "/workspace/venv" ]; then \
     echo "Directory '/workspace/venv' exists" \
     ; fi
 
-
-RUN git config --global http.sslVerify false
-RUN git config --global http.postBuffer 1048576000
-RUN apt-get install gnutls-bin
-
 WORKDIR /workspace/stable-diffusion-webui
 WORKDIR /workspace/stable-diffusion-webui/extensions
 RUN git clone -b Torch2 https://github.com/d8ahazard/sd_dreambooth_extension.git
