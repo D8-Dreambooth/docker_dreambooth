@@ -20,9 +20,9 @@ RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 # Install dependencies:
-RUN pip install git+https://github.com/TencentARC/GFPGAN.git
-RUN pip install git+https://github.com/openai/CLIP.git
-RUN pip install git+https://github.com/mlfoundations/open_clip.git
+RUN pip install git+https://github.com/TencentARC/GFPGAN.git@8d2447a2d918f8eba5a4a01463fd48e45126a379
+RUN pip install git+https://github.com/openai/CLIP.git@d50d76daa670286dd6cacf3bcd80b5e4823fc8e1
+RUN pip install git+https://github.com/mlfoundations/open_clip.git@bb6e834e9c70d9c27d0dc3ecedeebeaeb1ffad6b
 
 
 RUN jupyter nbextension enable --py widgetsnbextension
@@ -44,11 +44,29 @@ RUN git clone https://github.com/yfszzx/stable-diffusion-webui-images-browser.gi
 WORKDIR /workspace/stable-diffusion-webui/
 
 RUN git clone https://github.com/CompVis/stable-diffusion.git ./repositories/stable-diffusion
+WORKDIR /workspace/stable-diffusion-webui/repositories/stable-diffusion
+RUN git checkout "47b6b607fdd31875c9279cd2f4f16b92e4ea958e"
+WORKDIR /workspace/stable-diffusion-webui/
+
 RUN git clone https://github.com/CompVis/taming-transformers.git ./repositories/taming-transformers
+WORKDIR /workspace/stable-diffusion-webui/repositories/taming-transformers
+RUN GIT CHECKOUT "24268930bf1dce879235a7fddd0b2355b84d7ea6"
+WORKDIR /workspace/stable-diffusion-webui/
+
 RUN git clone https://github.com/sczhou/CodeFormer.git ./repositories/CodeFormer
+RUN cd ./repositories/CodeFormer && git checkout "c5b4593074ba6214284d6acd5f1719b6c5d739af"
+WORKDIR /workspace/stable-diffusion-webui/
+
 RUN git clone https://github.com/salesforce/BLIP.git ./repositories/BLIP
+WORKDIR /workspace/stable-diffusion-webui/repositories/BLIP
+RUN git checkout "48211a1594f1321b00f14c9f7a5b4813144b2fb9"
+WORKDIR /workspace/stable-diffusion-webui/
+
 RUN git clone https://github.com/crowsonkb/k-diffusion.git ./repositories/k-diffusion
-RUN git clone https://github.com/Stability-AI/stablediffusion.git ./repositories/stable-diffusion-stability-ai
+WORKDIR /workspace/stable-diffusion-webui/repositories/k-diffusion
+RUN git checkout "5b3af030dd83e0297272d861c19477735d0317ec"
+WORKDIR /workspace/stable-diffusion-webui/
+
 
 COPY --from=digitalhigh/dreambooth_venv:latest /workspace/models/ /workspace/models/
 
