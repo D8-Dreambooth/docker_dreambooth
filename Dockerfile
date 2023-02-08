@@ -33,7 +33,10 @@ RUN if [ ! -d "/workspace/venv" ]; then \
     ; else \
     echo "Directory '/workspace/venv' exists" \
     ; fi
-	
+
+
+RUN git config --global http.sslVerify false
+RUN git config --global http.postBuffer 1048576000
 
 
 WORKDIR /workspace/stable-diffusion-webui
