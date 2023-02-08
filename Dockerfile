@@ -43,8 +43,8 @@ RUN git clone https://github.com/yfszzx/stable-diffusion-webui-images-browser.gi
 
 WORKDIR /workspace/stable-diffusion-webui/
 
-RUN git clone https://github.com/Stability-AI/stable-diffusion.git ./repositories/stable-diffusion
-RUN git -C /workspace/stable-diffusion-webui/repositories/stable-diffusion checkout "47b6b607fdd31875c9279cd2f4f16b92e4ea958e"
+RUN git clone https://github.com/Stability-AI/stablediffusion.git ./repositories/stable-diffusion-stability-ai
+RUN git -C /workspace/stable-diffusion-webui/repositories/stable-diffusion-stability-ai checkout "47b6b607fdd31875c9279cd2f4f16b92e4ea958e"
 
 RUN git clone https://github.com/CompVis/taming-transformers.git ./repositories/taming-transformers
 RUN git -C /workspace/stable-diffusion-webui/repositories/taming-transformers checkout "24268930bf1dce879235a7fddd0b2355b84d7ea6"
