@@ -18,6 +18,17 @@ then
 	cd /workspace/stable-diffusion-webui	
 fi
 
+cd /workspace/stable-diffusion-webui/extensions/sd_dreambooth_extension/
+
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+if [[ "$current_branch" != "$BRANCH" ]]; then
+  git checkout "$BRANCH"
+  git fetch && git pull
+  $UPDATE_WEBUI = "false"
+fi
+
+cd /workspace/stable-diffusion-webui
+
 if [[ "$UPDATE_WEBUI" == "true" ]]
 then
 	cd /workspace/stable-diffusion-webui/extensions/sd_dreambooth_extension/

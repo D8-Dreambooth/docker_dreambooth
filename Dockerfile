@@ -83,4 +83,7 @@ ENV JUPYTER_PASSWORD=""
 ENV API_KEY=""
 
 ENV TORCH_REVISION=""
+
+ENV BRANCH="main"
+
 SHELL ["/bin/bash", "--login", "-c"]
