@@ -39,8 +39,6 @@ WORKDIR /workspace/stable-diffusion-webui/extensions
 RUN git clone -b Torch2 https://github.com/d8ahazard/sd_dreambooth_extension.git
 RUN git clone https://github.com/yfszzx/stable-diffusion-webui-images-browser.git
 
-RUN git -C /workspace/stable-diffusion-webui/repositories/k-diffusion checkout "5b3af030dd83e0297272d861c19477735d0317ec"
-
 WORKDIR /workspace/stable-diffusion-webui/
 
 
