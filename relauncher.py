@@ -8,7 +8,7 @@ while True:
     if n > 0:
         print(f'\tRelaunch count: {n}')
     launch_string = "python webui.py --port 3000 --xformers --ckpt-dir /workspace/models/ --listen --enable-insecure-extension-access --no-half"
-    if gradio_auth != "":
+    if gradio_auth:
         launch_string += " --gradio-auth " + gradio_auth
     if torch2 == "true":
         launch_string += " --torch2"

@@ -50,13 +50,12 @@ RUN pip install -r /workspace/stable-diffusion-webui/extensions/sd_dreambooth_ex
 
 ARG TORCH2
 
-ADD wheels/torch1 /workspace/wheels/
+ADD wheels/torch2 /workspace/wheels/
 
 RUN files=$(find /workspace/wheels/ -name "*.whl"); \
     echo "Files " $files; \
     pip install $files;
 
-RUN pip install xformers==0.0.17.dev447
 
 RUN rm -rf /workspace/wheels/
 RUN jupyter nbextension enable --py widgetsnbextension
