@@ -81,6 +81,8 @@ SHELL ["/bin/bash", "-c"]
 
 ADD ui-config.json /workspace/stable-diffusion-webui/ui-config.json
 ADD relauncher.py .
+ADD launch.sh /workspace/launch.sh
+RUN chmod a+x /workspace/launch.sh
 
 ADD start.sh /start.sh
 RUN chmod a+x /start.sh
