@@ -42,6 +42,6 @@ for %%i in %url_list% do (
 )
 
 docker build --build-arg TORCH2=false --tag digitalhigh/dreambooth:latest .\docker_dreambooth --file .\docker_dreambooth\Dockerfile
+docker push digitalhigh/dreambooth:latest
 docker build --build-arg TORCH2=true --tag digitalhigh/dreambooth:torch2_latest .\docker_dreambooth --file .\docker_dreambooth\Dockerfile_torch2
 docker push digitalhigh/dreambooth:torch2_latest
-docker push digitalhigh/dreambooth:latest

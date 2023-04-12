@@ -8,8 +8,6 @@ UPDATE_EXTENSION: Set to have the container update the dreambooth extension on c
 
 UPDATE_WEBUI: Update the Auto1111 WebUI on container start.
 
-TORCH2: Set to install torch2. Otherwise, torch 1.1.13 will be used.
-
 PUBLIC_KEY: Set for openSSH access. Runpod automatically sets this if configured in user settings.
 
 JUPYTER_PASSWORD: Erm...
