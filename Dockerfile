@@ -59,9 +59,9 @@ RUN git clone https://github.com/crowsonkb/k-diffusion.git /workspace/stable-dif
 
 ARG TORCH2
 
-#RUN pip install torch==2.0.0 torchvision==0.15.1 --extra-index-url https://download.pytorch.org/whl/cu118
-RUN pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 --extra-index-url https://download.pytorch.org/whl/cu113
-RUN pip install xformers==0.0.16
+RUN pip install torch==2.0.0 torchvision==0.15.1 xformers --extra-index-url https://download.pytorch.org/whl/cu118
+#RUN pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 --extra-index-url https://download.pytorch.org/whl/cu113
+#RUN pip install xformers==0.0.16
 
 RUN jupyter nbextension enable --py widgetsnbextension
 
