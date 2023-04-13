@@ -34,6 +34,7 @@ fi
 echo "Updating WebUI requirements"
 cat ./requirements_versions.txt ./extensions/sd_dreambooth_extension/requirements_extra.txt > /tmp/combined_ext_requirements.txt
 pip install -r /tmp/combined_requirements.txt
+
 # Need this version to prevent errors on startup
 pip install --upgrade fastapi==0.90.1
 pip install xformers==0.0.18
