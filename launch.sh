@@ -36,7 +36,7 @@ cat ./requirements_versions.txt ./extensions/sd_dreambooth_extension/requirement
 pip install -r /tmp/combined_requirements.txt
 # Need this version to prevent errors on startup
 pip install --upgrade fastapi==0.90.1
-pip install xformers==0.0.16
+pip install xformers==0.0.18
 
 echo "Launching relauncher..."
 python relauncher.py &
