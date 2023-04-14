@@ -14,7 +14,7 @@ while True:
         os.kill(int(pid), 9)
 
     # Launch new process
-    launch_string = "python webui.py --port 3000 --api --ckpt-dir /workspace/models/ --listen --enable-insecure-extension-access --no-half --xformers"
+    launch_string = "python webui.py --port 3000 --api --ckpt-dir /workspace/models/ --listen --enable-insecure-extension-access --no-half --xformers-flash-attention"
     if gradio_auth:
         launch_string += " --gradio-auth " + gradio_auth
     os.system(launch_string)

@@ -38,6 +38,7 @@ pip install -r /tmp/combined_requirements.txt
 # Need this version to prevent errors on startup
 pip install --upgrade fastapi==0.90.1
 pip install xformers==0.0.18
+pip install mediapipe
 
 echo "Launching relauncher..."
 python relauncher.py &
