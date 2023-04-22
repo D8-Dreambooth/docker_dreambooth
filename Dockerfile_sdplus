@@ -19,22 +19,25 @@ psmisc \
 apt-transport-https ca-certificates && \
 update-ca-certificates
 
-WORKDIR /workspace
+RUN mkdir -p /workspace/data_protected
+RUN mkdir -p /workspace/data_shared
+WORKDIR /app
 
 RUN git clone https://github.com/D8-Dreambooth/stable-diffusion-plus.git
 
-WORKDIR /workspace/stable-diffusion-plus
-
-RUN python -m venv /workspace/stable-diffusion-plus/venv
-ENV PATH="/workspace/stable-diffusion-plus/venv/bin:$PATH"
+WORKDIR /app/stable-diffusion-plus
+ADD sdplus/launch_settings.json /app/stable-diffusion-plus/launch_settings.json
 
 RUN pip install --upgrade pip
 RUN pip install -U jupyterlab ipywidgets jupyter-archive gdown wheel
-RUN pip install -r /workspace/stable-diffusion-plus/requirements.txt
+RUN pip install -r /app/stable-diffusion-plus/requirements.txt
+
+RUN python -m venv /app/stable-diffusion-plus/venv
+ENV PATH="/workspace/stable-diffusion-plus/venv/bin:$PATH"
 
 RUN jupyter nbextension enable --py widgetsnbextension
 
-ADD launch_sdplus.sh /start.sh
+ADD sdplus/start.sh /start.sh
 RUN chmod a+x /start.sh
 
 EXPOSE 22/tcp

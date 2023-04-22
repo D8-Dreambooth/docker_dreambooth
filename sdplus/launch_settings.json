@@ -1,0 +1,7 @@
+{
+  "shared_dir": "/workspace/data_shared",
+  "protected_dir": "/workspace/data_protected",
+  "user_auth": true,
+  "infer:basic": false,
+  "torch_command": "pip install torch==2.0.0+cu118 torchvision==0.15.1+cu118 --extra-index-url https://download.pytorch.org/whl/cu118"
+}
