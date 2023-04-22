@@ -1,0 +1,56 @@
+FROM runpod/pytorch:3.10-2.0.0-117 AS runtime
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt update && \
+apt install -y  --no-install-recommends \
+software-properties-common \
+git \
+openssh-server \
+libglib2.0-0 \
+libsm6 \
+libgl1 \
+libxrender1 \
+libxext6 \
+ffmpeg \
+wget \
+curl \
+psmisc \
+apt-transport-https ca-certificates && \
+update-ca-certificates
+
+WORKDIR /workspace
+
+RUN git clone https://github.com/D8-Dreambooth/stable-diffusion-plus.git
+
+WORKDIR /workspace/stable-diffusion-plus
+
+RUN python -m venv /workspace/stable-diffusion-plus/venv
+ENV PATH="/workspace/stable-diffusion-plus/venv/bin:$PATH"
+
+RUN pip install --upgrade pip
+RUN pip install -U jupyterlab ipywidgets jupyter-archive gdown wheel
+RUN pip install -r /workspace/stable-diffusion-plus/requirements.txt
+
+RUN jupyter nbextension enable --py widgetsnbextension
+
+ADD launch_sdplus.sh /start.sh
+RUN chmod a+x /start.sh
+
+EXPOSE 22/tcp
+EXPOSE 22/udp
+EXPOSE 3000/tcp
+
+# Update the Auto1111 WebUI on container start.
+ENV UPDATE_WEBUI="false"
+
+# Set for openSSH access. Runpod automatically sets this if configured in user settings.
+ENV PUBLIC_KEY=""
+
+ENV JUPYTER_PASSWORD=""
+
+ENV BRANCH="main"
+ENV PORT="3000"
+
+SHELL ["/bin/bash", "--login", "-c"]
+CMD [ "/start.sh" ]

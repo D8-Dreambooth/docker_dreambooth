@@ -29,7 +29,6 @@ RUN pip install basicsr==1.4.2
 WORKDIR /workspace/stable-diffusion-webui/extensions
 RUN git clone -b dev https://github.com/d8ahazard/sd_dreambooth_extension.git
 RUN git clone https://github.com/yfszzx/stable-diffusion-webui-images-browser.git
-RUN git clone https://github.com/kex0/batch-face-swap.git
 
 RUN pip install -r /workspace/stable-diffusion-webui/requirements_versions.txt
 RUN pip install -r /workspace/stable-diffusion-webui/extensions/sd_dreambooth_extension/requirements.txt
